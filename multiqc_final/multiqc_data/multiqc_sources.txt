@@ -1,0 +1,13 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	SRR8146963_2	/home/saabstep/binf_class_6110/Metagenomics_of_Turin/fastqc_final/SRR8146963_2_fastqc.zip
+FastQC	all_sections	SRR8146944_1	/home/saabstep/binf_class_6110/Metagenomics_of_Turin/fastqc_final/SRR8146944_1_fastqc.zip
+FastQC	all_sections	SRR8146968_1	/home/saabstep/binf_class_6110/Metagenomics_of_Turin/fastqc_final/SRR8146968_1_fastqc.zip
+FastQC	all_sections	SRR8146963_1	/home/saabstep/binf_class_6110/Metagenomics_of_Turin/fastqc_final/SRR8146963_1_fastqc.zip
+FastQC	all_sections	SRR8146936_2	/home/saabstep/binf_class_6110/Metagenomics_of_Turin/fastqc_final/SRR8146936_2_fastqc.zip
+FastQC	all_sections	SRR8146968_2	/home/saabstep/binf_class_6110/Metagenomics_of_Turin/fastqc_final/SRR8146968_2_fastqc.zip
+FastQC	all_sections	SRR8146944_2	/home/saabstep/binf_class_6110/Metagenomics_of_Turin/fastqc_final/SRR8146944_2_fastqc.zip
+FastQC	all_sections	SRR8146935_2	/home/saabstep/binf_class_6110/Metagenomics_of_Turin/fastqc_final/SRR8146935_2_fastqc.zip
+FastQC	all_sections	SRR8146936_1	/home/saabstep/binf_class_6110/Metagenomics_of_Turin/fastqc_final/SRR8146936_1_fastqc.zip
+FastQC	all_sections	SRR8146935_1	/home/saabstep/binf_class_6110/Metagenomics_of_Turin/fastqc_final/SRR8146935_1_fastqc.zip
+FastQC	all_sections	SRR8146938_2	/home/saabstep/binf_class_6110/Metagenomics_of_Turin/fastqc_final/SRR8146938_2_fastqc.zip
+FastQC	all_sections	SRR8146938_1	/home/saabstep/binf_class_6110/Metagenomics_of_Turin/fastqc_final/SRR8146938_1_fastqc.zip

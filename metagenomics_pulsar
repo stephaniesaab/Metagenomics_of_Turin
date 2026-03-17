@@ -1,0 +1,59 @@
+#Metagenomics.
+
+#Tools used
+#1) SRA toolkit
+#2) datasets (ncbi)
+#3) fastqc
+#4) MultiQC
+#5) Salmon - Preparing Counts
+#6) Tximport - Move things from command line into R, aggregate transcript-level data to gene level
+
+#Get the Accession list into a txt (downloaded as a CSV from NCBI) and clean the header
+cut -d ',' -f 1 SraAccList.csv > sra_list.txt
+
+#Take off header
+sed -i '1d' sra_list.txt
+
+#Download with sra sratoolkit
+prefetch --option-file sra_list.txt
+
+#Watch the download:
+watch -n 5 "ls -lh ."
+
+#Move the SRA files to a directory in the repo: SRA_files
+mkrdir SRA_files
+for id in $(cat sra_list.txt); do
+    mv ${id}/${id}.sra ./SRA_files/
+done
+
+# Uploading your list of IDs to your scratch space
+scp sra_list.txt ssaab@graham.computecanada.ca:/scratch/ssaab
+
+
+Now that your directory is on Narval, here is your new routine:
+Connect: ssh ssaab@narval.computecanada.ca
+Go to work: cd /scratch/ssaab/Metagenomics_of_Turin/
+Run Jobs: Use sbatch scripts to run SRA downloads and Salmon alignment.
+Bring results home: Once multiqc_report.html or quant.sf files are generated, you download only those small result files back to your laptop to look at them.
+
+
+
+
+
+#Split the SRA files into FASTQ files:
+fasterq-dump --split-files SRA_files/SRR*
+
+
+
+
+
+
+
+#Initial Quality Assessment
+#Run FastQC on the raw FASTQ files -> visualize base quality scores, GC content, adapter contamination
+
+#Aggregate reports with MultiQC
+
+#Trimming and Filtering with NanoFilt or fastp
+
+#Contaminant removal with Bowtie2
