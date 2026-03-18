@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --account=def-itobias
-#SBATCH --cpus-per-task=8      # High CPU count for faster splitting
-#SBATCH --mem=16G               # Extra RAM for large buffers
-#SBATCH --time=03:00:00         # Adjust based on how many files you have
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=16G              
+#SBATCH --time=03:00:00
 #SBATCH --job-name=SRA_to_FASTQ
 
 #1) Load the sratoolkit

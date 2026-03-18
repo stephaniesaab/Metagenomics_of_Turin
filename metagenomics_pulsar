@@ -44,16 +44,45 @@ Bring results home: Once multiqc_report.html or quant.sf files are generated, yo
 fasterq-dump --split-files SRA_files/SRR*
 
 
-
-
-
-
-
 #Initial Quality Assessment
 #Run FastQC on the raw FASTQ files -> visualize base quality scores, GC content, adapter contamination
 
 #Aggregate reports with MultiQC
 
+#Make index table
+
 #Trimming and Filtering with NanoFilt or fastp
 
 #Contaminant removal with Bowtie2
+#Maybe should load a ram disk
+
+
+#Trim with fastp --> kraken2 -> bracken -> get biom file -> open in R and do alpha and beta diversity
+#Skip trimming because i got a pass on multiqc --> was fine on all areas
+
+
+#Kraken line from slides:
+#Need to increase confidence from default 0 to decrease false positive Generate
+#Threads 32
+#output specify
+#Memory-mapping?
+#--db?
+#kraken2 --db . --confidence 0.15 --memory-mapping --threads 32 --output stool_sample.kraken --report stool_sample.report stool_sample.fastq.gz
+#Draft
+#kraken2 --db . --confidence 0.15 --memory-mapping --threads 32 --output vegan_sample.kraken --report vegan_sample.report --paired --minimum-base-quality 20 --use-names
+
+
+#Downloading standard pre-indexed databases
+mkdir -p /scratch/ssaab/kraken_db
+cd /scratch/ssaab/kraken_db
+
+#Download 16GB standard database
+wget https://genome-idx.s3.amazonaws.com/kraken/k2_standard_16_GB_20251015.tar.gz
+tar -xvzf k2_standard_16_GB_20251015.tar.gz
+cd /scratch/ssaab/Metagenomics_of_Turin/
+sbatch run_kraken.sh
+
+#Download the Kraken and Bracken files
+scp -r ssaab@narval.computecanada.ca:/scratch/ssaab/Metagenomics_of_Turin/kraken_results/ ~/binf_class_6110/Metagenomics_of_Turin/
+
+conda activate kraken_biom
