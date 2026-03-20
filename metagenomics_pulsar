@@ -86,3 +86,6 @@ sbatch run_kraken.sh
 scp -r ssaab@narval.computecanada.ca:/scratch/ssaab/Metagenomics_of_Turin/kraken_results/ ~/binf_class_6110/Metagenomics_of_Turin/
 
 conda activate kraken_biom
+
+#Convert to biom files to plot phylum and genus and species
+kraken-biom kraken_results/*[0-9].report --fmt json -o kraken_bioms
