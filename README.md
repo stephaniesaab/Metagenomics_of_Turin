@@ -108,13 +108,25 @@ Figure 1 revealed that the Turin cohort is dominated by the phylum Bacteroidota 
 
 ![](./sunburst_plot.png)
 
-**Figure 1. Sunburst plot of Abundant Taxa in Gut microbiomes** The samples include three vegans and three omnivores of Turin, Italy. The deepest level is order and the root is Bacteria kingdom. An interactive plot is available at sunburst_plot.html
+**Figure 1. Sunburst plot of Abundant Taxa in Gut microbiomes** The samples include three vegans and three omnivores of Turin, Italy. The deepest level is order and the root is Bacteria kingdom. An interactive plot is available by downloading: sunburst_plot.html. 
+
+
+![](./bar_plot10.png)
+
+**Figure 2. Top 10 species by relative abundance among vegans and omnivores.** The samples include three vegans and three omnivores from Turin, Italy. The species are ranked by relative abundance (0-1).
+
+
+![](./bar_plot_2.png)
+
+**Figure 3. Top 10 species by relative abundance among samples** The samples include three omnivores (first three going right to left) and three vegans from Turin, Italy. The species are ranked by relative abundance (0-1).
 
 ## 3.4 Alpha and Beta Diversity
 
 Alpha diversity metrics (Shannon and Simpson indices) showed higher median diversity in omnivores (Figure 4), but did not find statistically significant differences between groups (p = 0.5187). When plotting by sample, it is clear that there is large variation between samples as two omnivore samples appear to have high Shannon and Simpson indices, while one vegan sample has a high Shannon index (> 3) and Simpson index (>0.75) (Figure 5). Observed alpha-diversity showed more similarities between diets. This lack of significance is likely due to the limited statistical power of the cohort size (n = 3) and high individual variation. 
 
 Beta diversity was assessed using two distances. Bray-curtis distance is weighted by abundance. Principal Coordinate Analysis (PCoA) and Non-metric multidimensional scaling (NMDS) ordinations showed overlapping clusters, likely due to similarities driven by the shared dominance of S. copri. The NMDS achieved an excellent fit (Stress = 7 x 10-5), though this is likely due to the small sample size. Jaccard distance accounts for the presence or absence of rare species and revealed clearer group separation, particularly along PC1 (Figure 7). This suggests that the dietary signal in the cohorts is driven by the presence of diet-specific taxa rather than shifts in the abundance of species. PERMANOVA analysis confirmed that dietary group explains approximately 17% of total community variance (R2 = 0.17), but this is not significant (p = 0.4).
+
+
 
 ## 3.5 Differential Abundance
 
