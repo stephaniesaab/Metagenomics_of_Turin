@@ -28,11 +28,3 @@ conda activate genome_assembly
 multiqc ./fastqc_reports/ -o ./multiqc_final/
 
 echo "MultiQC complete."
-
-
-
-#Fast taxonomic profiling: Kraken2 + Bracken
-#Speedy
-#Functional Profiling: HUMAnN3
-#Fast quantification: Salmon
-#sbatch --dependency=afterok:57883066 run_fastqc.sh

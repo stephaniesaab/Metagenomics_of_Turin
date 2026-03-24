@@ -26,40 +26,21 @@ for id in $(cat sra_list.txt); do
     mv ${id}/${id}.sra ./SRA_files/
 done
 
-# Uploading your list of IDs to your scratch space
+# Uploading list of IDs to your scratch space
 scp sra_list.txt ssaab@graham.computecanada.ca:/scratch/ssaab
 
-
-Now that your directory is on Narval, here is your new routine:
-Connect: ssh ssaab@narval.computecanada.ca
-Go to work: cd /scratch/ssaab/Metagenomics_of_Turin/
-Run Jobs: Use sbatch scripts to run SRA downloads and Salmon alignment.
-Bring results home: Once multiqc_report.html or quant.sf files are generated, you download only those small result files back to your laptop to look at them.
-
-
-
-
+#ssh ssaab@narval.computecanada.ca
+#cd /scratch/ssaab/Metagenomics_of_Turin/
 
 #Split the SRA files into FASTQ files:
 fasterq-dump --split-files SRA_files/SRR*
-
 
 #Initial Quality Assessment
 #Run FastQC on the raw FASTQ files -> visualize base quality scores, GC content, adapter contamination
 
 #Aggregate reports with MultiQC
 
-#Make index table
-
-#Trimming and Filtering with NanoFilt or fastp
-
-#Contaminant removal with Bowtie2
-#Maybe should load a ram disk
-
-
-#Trim with fastp --> kraken2 -> bracken -> get biom file -> open in R and do alpha and beta diversity
 #Skip trimming because i got a pass on multiqc --> was fine on all areas
-
 
 #Kraken line from slides:
 #Need to increase confidence from default 0 to decrease false positive Generate
