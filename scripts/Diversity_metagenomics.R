@@ -226,7 +226,10 @@ plot_richness(physeq, x="samples", measures=c("Observed", "Shannon", "Simpson"),
   geom_boxplot(alpha = 0.5, outlier.shape = NA, coef = 0) + 
   geom_jitter(width = 0.2, size = 3) + 
   theme_bw() +
-  labs(title = "Alpha Diversity Comparison: Vegan vs. Omnivore Gut Microbiomes")
+  labs(title = "Alpha Diversity Comparison of Diets")+
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
 
 #Add plot with t-test values between Diets
 alpha_plot <- plot_richness(physeq, x = 'Diet', measures = c("Observed", "Shannon", "Simpson"), color = "Diet") +
@@ -421,10 +424,10 @@ ggplot(aldex_res, aes(x = diff.win, y = diff.btw,
                       color = abs(effect) > 2)) + #All are not significant, colour by effect size instead
   geom_point(alpha = 0.7, size = 3) +
   scale_color_manual(values = c("black", "red"), 
-                     labels = c("|Effect| < 1 (Noisy)", "|Effect| > 1 (Biologically Significant)")) +
+                     labels = c("|Effect| < 2 (Noisy)", "|Effect| > 2 (Biologically Significant)")) +
   theme_bw() +
   labs(
-    title = "ALDEx2 Differential Abundance: Vegan vs. Omnivore",
+    title = "Differential Abundance: Vegan vs. Omnivore",
     x = "Median Dispersion (Within-group)",
     y = "Median Difference (Between-group)",
     color = "Biological Significance"
