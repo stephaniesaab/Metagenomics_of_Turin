@@ -1,6 +1,6 @@
 # Metagenomics_of_Turin
 Assignment 3 for Genomic Methods of Bioinformatics, assessing metagenomic sequence data of 6 omnivores and vegans in Turin, Italy.
-
+March 23, 2026
 ## Table of Contents
 * [1.Introduction](#1-introduction)
 * [1.1 Diet and the Gut Microbiome](#11-diet-and-the-gut-microbiome)
@@ -27,7 +27,7 @@ Assignment 3 for Genomic Methods of Bioinformatics, assessing metagenomic sequen
 * [4.4 Conclusion](#44-conclusion)
 * [5. References](#5-references)
 
-## 1. Introduction(#1-introduction)
+# 1. Introduction
 ## 1.1 Diet and the Gut Microbiome
 
 The human gut microbiome is a complex metabolic organ essential for host well-being. It performs critical functions including compound breakdown and vitamin biosynthesis(Filippis et al., 2019). When this ecosystem is imbalanced, it reaches “dysbiosis”. Dysbiosis of the gut microbiome is linked to several pathologies, including neurological disorders, obesity, inflammatory bowel disease, and cancer(Filippis et al., 2019). A number of factors can influence the composition and diversity of the gut microbiome including: diet, age, geography, drugs, environmental substances(David et al., 2014). The “Westernization” of global diets is characterized by high fat and protein intake and low fiber. It is proposed to have lead to a loss of microbial diversity in Western populations. Specifically, dietary habits can dictate the dominance of certain enterotypes: Prevotella is typically associated with fiber-rich diets, while Bacteroides abundance is linked to high-protein and high-fat diets. Even short-term macronutrient shifts can alter microbial composition and diversity. Hence, comparing long-term dietary cohorts, like vegans and omnivores, provides insight into human microbe co-evolution and the effects of dietary habits on gut microbiome composition and diversity(David et al., 2014). 
@@ -64,7 +64,7 @@ Raw metagenomic sequence data were retrieved from the NCBI Sequence Read Archive
 
 ## 2.2 QC and Assessment
 
-Raw reads were assessed with FastQC (v0.12.1) as that is the version available on the Narval cluster(Babraham Bioinformatics - FastQC A Quality Control Tool for High Throughput Sequence Data, n.d.). Quality control reports created by FastQC were aggregated into one report using MultiQC(v1.14). The process was given 8 threads. Individual reports from the 12 files were aggregated using MultiQC to generate a single summary report using default parameters. Based on the report by MultiQC (multiqc_report.html), the sequence reads were high quality with lengths of 150bp. Each sample had a high mean quality score along its sequence (Q > 30). Read counts varied between 28M-46M, with lengths of 150 bp, which are standard for shotgun metagenomics(Wen et al., 2023). All samples had a low adapter content (<2.15%). Overall, the sequences all showed high quality status for adapter content, per base sequence quality, per sequence quality scores, GC content, and per base N content.  No trimming or filtering were done as the reads were already short lengths (150bp) and additional trimming may remove important sequences and reduce the number of k-mers available for taxonomic profiling.
+Raw reads were assessed with FastQC (v0.12.1) as that is the version available on the Narval cluster(Babraham Bioinformatics - FastQC A Quality Control Tool for High Throughput Sequence Data, n.d.). Quality control reports created by FastQC were aggregated into one report using MultiQC(v1.14). The process was given 8 threads. Individual reports from the 12 files were aggregated using MultiQC to generate a single summary report using default parameters. Based on the report by MultiQC (multiqc_report.html), the sequence reads were high quality with lengths of 150bp. Each sample had a high mean quality score along its sequence (Q > 30). Read counts varied between 28M-46M, with lengths of 150 bp, which are standard for shotgun metagenomics(Wen et al., 2023). All samples had a low adapter content (<2.15%). Overall, the sequences all showed high quality status for adapter content, per base sequence quality, per sequence quality scores, GC content, and per base N content. No trimming or filtering were done as the reads were already high-quality and short lengths (150bp). Additional trimming may remove important sequences and reduce the number of k-mers available for taxonomic profiling by Kraken2 classification
 
 ## 2.3 Taxonomic Profiling and Abundance Re-estimation
 
@@ -72,7 +72,7 @@ Taxonomic profiling was conducted using Kraken2 (v2.1.6) against a Standard 16GB
 
 ## 2.4 Pre-processing
 
-Taxonomic reports were converted to BIOM format using kraken-biom (v1.2.0) with JSON formatting and imported into R (v4.5.1) via the phyloseq (v1.52.0) package(Lu & Salzberg, 2020; McMurdie & Holmes, 2013). The phyloseq object was constructed manually by integrating the OTU (count table), a taxonomic table (species), and the sample metadata (Diet: Omnivore vs. Vegan). Rarefaction curves were generated using the vegan package (v2.7-2) with a step size of 10,000 to visualize sequencing depth saturation(Dixon, 2003). For visualization, data were transformed to relative abundance, with phyla filtered for (>5\%) abundance for hierarchy plots and top 10 species selected for community composition bar plots, for legibility. The species-level abundance estimates from Bracken for all samples were merged. Missing values were replaced by zeroes to make a complete feature table. The phyla were filtered to remove low abundance species (< 5%) for the sunburst plot. Community composition was assessed by transforming data into relative abundances and filtering for the top 10 most abundant species for legibility. All plots were made with ggplot2 (v4.0.2) and t-tests for the alpha diversity plots were run with ggpubr (v0.6.3)(Create Elegant Data Visualisations Using the Grammar of Graphics • Ggplot2, n.d.; Ggplot2 Based Publication Ready Plots • Ggpubr, n.d.).
+Taxonomic reports were converted to BIOM format using kraken-biom (v1.2.0) with JSON formatting and imported into R (v4.5.1) via the phyloseq (v1.52.0) package(Lu & Salzberg, 2020; McMurdie & Holmes, 2013). The phyloseq object was constructed manually by integrating the OTU (count table), a taxonomic table (species), and the sample metadata (Diet: Omnivore vs. Vegan). Rarefaction curves were generated using the vegan package (v2.7-2) with a step size of 10,000 to visualize sequencing depth saturation(Dixon, 2003). For visualization, data were transformed to relative abundance, with phyla filtered for (> 5%) abundance for hierarchy plots and top 10 species selected for community composition bar plots, for legibility. The species-level abundance estimates from Bracken for all samples were merged. Missing values were replaced by zeroes to make a complete feature table. The phyla were filtered to remove low abundance species (< 5%) for the sunburst plot. Community composition was assessed by transforming data into relative abundances and filtering for the top 10 most abundant species for legibility. All plots were made with ggplot2 (v4.0.2) and t-tests for the alpha diversity plots were run with ggpubr (v0.6.3)(Create Elegant Data Visualisations Using the Grammar of Graphics • Ggplot2, n.d.; Ggplot2 Based Publication Ready Plots • Ggpubr, n.d.).
 
 ## 2.5 Alpha and Beta Diversity Analysis
 
@@ -85,14 +85,20 @@ To assess the composition of the microbiome, differential abundance was assessed
 # 3. Results
 ## 3.1 QC
 
-Based on the report by MultiQC (multiqc_report.html), each sample had a high mean quality score along its sequence (Q > 30) with standard lengths of 150bp(Metagenomics Sequencing Guide, n.d.). Read counts varied between 28M-46M. All samples had a low adapter content (<2.15%) and stable GC content. Overall, the sequences all showed high quality status for adapter content, per base sequence quality, per sequence quality scores, GC content, and per base N content. Hence, no trimming or filtering were done. This preserved the maximum information and number of k-mers for taxonomic classification.
+The dataset consisted of six samples with a mean sequencing depth of ~35M reads. Rarefaction analysis (Figure 1) confirmed that all samples reached a diversity plateau, indicating there was sufficient coverage to capture the majority of OTUs in the samples. Based on the report by MultiQC (multiqc_report.html), each sample had a high mean quality score along its sequence (Q > 30) with standard lengths of 150bp(Metagenomics Sequencing Guide, n.d.). Read counts varied between 28M-46M. All samples had a low adapter content (<2.15%) and stable GC content. Overall, the sequences all showed high quality status for adapter content, per base sequence quality, per sequence quality scores, GC content, and per base N content. Hence, no trimming or filtering were done. This preserved the maximum information and number of k-mers for taxonomic classification. 
+
+![](./rarefaction_curve.png)
+
+**Figure 1. Rarefaction curve of samples** The samples include three vegans and three omnivores of Turin, Italy. The curve shows that each sample reached a diversity plateau. 
+
 
 ## 3.2 Taxonomic Classification
 
 Taxonomic assignment via Kraken2 yielded a classification rate between 7-11% at the root node (Table 1). This is a conservative classification, which is a result of the 0.15 confidence threshold applied during processing to prioritize precision and minimize false-positive assignments. 
-
-**Table 1: Kraken2 Classification Rate Percentage by Sample and Diet**
-| Sample|Diet|Classification of reads (%)|
+Table 1: Summary of Sequencing Metrics and Taxonomic Classification
+| Sample Accession | Diet Group | Raw Reads | Classified (%) | Unclassified (%) |
+**Table 1: Summary of Sequencing Metrics and Taxonomic classification by Kraken2**
+| Sample Accession|Diet Group|Classified reads (%)|
 | :--- | :---: | ---: |
 | SRR8146935 | Omnivore | 9.47 |
 | SRR8146936 | Omnivore | 11.58 |
@@ -122,13 +128,15 @@ Figure 1 revealed that the Turin cohort is dominated by the phylum Bacteroidota 
 
 ## 3.4 Alpha and Beta Diversity
 
-Alpha diversity metrics (Shannon and Simpson indices) showed higher median diversity in omnivores (Figure 4), but did not find statistically significant differences between groups (p = 0.5187). When plotting by sample, it is clear that there is large variation between samples as two omnivore samples appear to have high Shannon and Simpson indices, while one vegan sample has a high Shannon index (> 3) and Simpson index (>0.75) (Figure 5). Observed alpha-diversity showed more similarities between diets. This lack of significance is likely due to the limited statistical power of the cohort size (n = 3) and high individual variation. 
-
+Alpha diversity metrics (Shannon and Simpson indices) showed higher median diversity in omnivores (Figure 4), but did not find statistically significant differences between groups (Observed p = 0.42, Shannon index p = 0.5197, Simpson p = 0.54). When plotting by sample, it is clear that there is large variation between samples as two omnivore samples appear to have high Shannon and Simpson indices, while one vegan sample has a high Shannon index (> 3) and Simpson index (>0.75) (Figure 5). Observed alpha-diversity showed more similarities between diets. This lack of significance is likely due to the limited statistical power of the cohort size (n = 3) and high individual variation. 
 
 ![](./a_div.png)
 
-**Figure 4. Alpha diversity metrics of samples** The samples include three vegans and three omnivores of Turin, Italy. Student's t-test used to calculate signicince, ns = not significant.
+**Figure 4. Alpha diversity metrics of Diets** The samples include three vegans and three omnivores of Turin, Italy.
 
+![](./a_div2.png)
+
+**Figure 5. Alpha diversity metrics of Samples** The samples include three vegans and three omnivores of Turin, Italy. Student's t-test used to calculate signicince, ns = not significant.
 
 Beta diversity was assessed using two distances. Bray-curtis distance is weighted by abundance. Principal Coordinate Analysis (PCoA) and Non-metric multidimensional scaling (NMDS) ordinations showed overlapping clusters, likely due to similarities driven by the shared dominance of S. copri. The NMDS achieved an excellent fit (Stress = 7 x 10-5), though this is likely due to the small sample size. Jaccard distance accounts for the presence or absence of rare species and revealed clearer group separation, particularly along PC1 (Figure 7). This suggests that the dietary signal in the cohorts is driven by the presence of diet-specific taxa rather than shifts in the abundance of species. PERMANOVA analysis confirmed that dietary group explains approximately 17% of total community variance (R2 = 0.17), but this is not significant (p = 0.4).
 
@@ -161,7 +169,7 @@ Individual samples showed significant inter-individual variation in S. copri abu
 
 ## 4.2 Alpha and Beta Diversity
 
-Literature suggests that vegans and vegetarians have significantly greater richness in alpha diversity compared to omnivores, especially for Bacteroidetes OTUs(Tomova et al., 2019). A study on the impact of vegan, vegetarian, and omnivore diets on the gut microbiome of adults in Italy found statistically significant differences in alpha diversity between vegetarians and omnivores, but only marginally significant differences between vegans and omnivores, with diversity being lower in omnivores compared to vegetarians. This trend was not significant in this study (p = 0.5187). The lack of significance in Shannon and Simpson indices likely reflects the limited statistical power of the small cohort (n = 3 per group) and the high inter-individual noise seen in dominant species like S. copri. However, the observed median trend aligns with the hypothesis that dietary fiber consumption in plant-based diets supports niche diversity, though the metrics are obscured by individual variation in this small dataset. 
+Literature suggests that vegans and vegetarians have significantly greater richness in alpha diversity compared to omnivores, especially for Bacteroidetes OTUs(Tomova et al., 2019). A study on the impact of vegan, vegetarian, and omnivore diets on the gut microbiome of adults in Italy found statistically significant differences in alpha diversity between vegetarians and omnivores, but only marginally significant differences between vegans and omnivores, with diversity being lower in omnivores compared to vegetarians. This trend was not significant in this study (p = 0.5197). The lack of significance in Shannon and Simpson indices likely reflects the limited statistical power of the small cohort (n = 3 per group) and the high inter-individual noise seen in dominant species like S. copri. However, the observed median trend aligns with the hypothesis that dietary fiber consumption in plant-based diets supports niche diversity, though the metrics are obscured by individual variation in this small dataset. 
 
 The discrepancy between the Bray-Curtis and Jaccard distances aligned with the literature on microbiome profiles in Italians. The abundance-weighted Bray-Curtis metric failed to cluster diets, likely due to shared dominance of a few highly abundant taxa. This is similar to results in the Italian cohort as the beta diversity of the samples did not show differences, which the authors attribute to similarities in nutrient intake rather than differences in food items(Losasso et al., 2018). Common factors between the diets was high fat content and reduced protein and carbohydrate intakes, which may drive microbial communities towards a westernized profile. 
 
