@@ -88,7 +88,7 @@ rare_curve <- rarecurve(otu_table, step = 10000, label = TRUE,
 #3) Phylum Plot ====
 
 #Read the BIOM file
-biom_data <- read_biom("./kraken_bioms/merged_samples.biom")
+biom_data <- read_biom("../kraken_bioms/merged_samples.biom")
 phybiom <- import_biom(biom_data)
 
 #Clean taxonomy names (Kraken names them k__, p__...)
@@ -267,7 +267,7 @@ var_pc1 <- round(ord_pcoa_bray$values$Relative_eig[1] * 100, 1)
 var_pc2 <- round(ord_pcoa_bray$values$Relative_eig[2] * 100, 1)
 
 #Get PCoA plot
-ggplot(data = pcoa_df,
+bc_plot <- ggplot(data = pcoa_df,
        aes(x = PC1, y = PC2, color = Diet, shape = Diet))+
   geom_point(size = 5, alpha = 0.8) + 
   labs(
@@ -316,7 +316,7 @@ plot_ordination(
 
 
 #Get NMDS plot with colour
-ggplot(data = nmds_df,
+nmds_plot <- ggplot(data = nmds_df,
        aes(x = NMDS1, y = NMDS2, color = Diet, shape = Diet))+
   geom_point(size = 5, alpha = 0.8) +
   labs(
@@ -351,7 +351,7 @@ plot_ordination(
   labs(title = "PCoA of Jaccard Distances")
 
 #Get Jaccard plot
-ggplot(data = jac_df,
+jac_plot <- ggplot(data = jac_df,
        aes(x = PC1, y = PC2, color = Diet, shape = Diet))+
   geom_point(size = 5, alpha = 0.8) +
   labs(
@@ -362,7 +362,7 @@ ggplot(data = jac_df,
   theme_bw() +
   theme(legend.position = "right", panel.grid.minor = element_blank())
 
-
+bc_plot | nmds_plot | jac_plot
 ## Permanova : capture results to interpret clustering ====
 metadata <- as(sample_data(physeq), "data.frame")
 permanova_res <- adonis2(bray_dist ~ Diet, data = metadata)
@@ -425,6 +425,7 @@ ggplot(aldex_res, aes(x = diff.win, y = diff.btw,
   theme_bw() +
   labs(
     title = "ALDEx2 Differential Abundance: Vegan vs. Omnivore",
+    subtitle = "Red points indicate trends toward Diet-specific enrichment",
     x = "Median Dispersion (Within-group)",
     y = "Median Difference (Between-group)",
     color = "Biological Significance"
@@ -443,3 +444,12 @@ min(adj_p) #0.8
 
 #Species with the lowest raw p-value
 best_sp <- names(which.min(p_vals)) #"Alistipes onderdonkii"
+
+#Boxplot for the most different taxon
+ggplot(species_counts, aes(x = Diet, y = .data[[best_sp]], fill = Diet)) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.2) +
+  labs(title = paste("Abundance of", best_sp),
+       subtitle = paste("Raw p-value:", round(min(p_vals), 4), "(Not significant after BH adjustment)"),
+       y = "Relative Abundance") +
+  theme_classic()
